@@ -63,6 +63,7 @@ module "azure_static_website_with_ovh_dns" {
 | <a name="input_index_document"></a> [index\_document](#input\_index\_document) | The name of the document (html) file to be used as index | `string` | `"index.html"` | no |
 | <a name="input_location"></a> [location](#input\_location) | Azure region where the resource group is located | `string` | `"france central"` | no |
 | <a name="input_resource_group_name"></a> [resource\_group\_name](#input\_resource\_group\_name) | Ressource group where the ressources will be created | `string` | n/a | yes |
+| <a name="input_storage_account_ip_whitelist"></a> [storage\_account\_ip\_whitelist](#input\_storage\_account\_ip\_whitelist) | The list of allowed IP sources to access the storage account | `list(string)` | <pre>[<br>  "0.0.0.0/0"<br>]</pre> | no |
 | <a name="input_storage_account_settings"></a> [storage\_account\_settings](#input\_storage\_account\_settings) | Map of settings for the storage account | `map(string)` | <pre>{<br>  "account_kind": "StorageV2",<br>  "account_replication_type": "LRS",<br>  "account_tier": "Standard"<br>}</pre> | no |
 | <a name="input_subdomain"></a> [subdomain](#input\_subdomain) | Sub domain for the CDN custom endpoint | `string` | `"blog"` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Map of tags for resources | `map(string)` | <pre>{<br>  "environment": "test"<br>}</pre> | no |

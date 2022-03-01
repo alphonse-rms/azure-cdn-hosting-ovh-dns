@@ -49,6 +49,12 @@ variable "storage_account_settings" {
   }
 }
 
+variable "storage_account_ip_whitelist" {
+  type        = list(string)
+  description = "The list of allowed IP sources to access the storage account"
+  default     = ["0.0.0.0/0"]
+}
+
 ## CDN ##
 
 variable "cdn_location" {

@@ -31,11 +31,8 @@ resource "azurerm_storage_account_network_rules" "storage_account_network_rules"
   storage_account_id = azurerm_storage_account.storage_account.id
 
   default_action = "Deny"
-  ip_rules = [
-    "147.243.0.0/16", # azure CDNs
-    chomp(data.http.myip.body)
-  ]
-  bypass = ["Metrics", "AzureServices", "Logging"]
+  ip_rules       = var.storage_account_ip_whitelist
+  bypass         = ["Metrics", "AzureServices", "Logging"]
 }
 
 resource "null_resource" "blob_upload" {
@@ -111,10 +108,6 @@ resource "azurerm_cdn_endpoint" "endpoint" {
   }
 
   tags = var.tags
-}
-
-data "http" "myip" {
-  url = "http://ifconfig.co"
 }
 
 resource "ovh_domain_zone_record" "record" {
