@@ -51,8 +51,8 @@ variable "storage_account_settings" {
 
 variable "storage_account_ip_whitelist" {
   type        = list(string)
-  description = "The list of allowed IP sources to access the storage account"
-  default     = ["0.0.0.0/0"]
+  description = "List of public IP or IP ranges in CIDR Format. Only IPV4 addresses are allowed. /31 and /32 CIDR not supported"
+  default     = []
 }
 
 ## CDN ##

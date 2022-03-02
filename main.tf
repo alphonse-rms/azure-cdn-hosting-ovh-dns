@@ -30,7 +30,7 @@ resource "azurerm_storage_account" "storage_account" {
 resource "azurerm_storage_account_network_rules" "storage_account_network_rules" {
   storage_account_id = azurerm_storage_account.storage_account.id
 
-  default_action = "Deny"
+  default_action = length(var.storage_account_ip_whitelist) == 0 ? "Allow" : "Deny"
   ip_rules       = var.storage_account_ip_whitelist
   bypass         = ["Metrics", "AzureServices", "Logging"]
 }
