@@ -124,7 +124,7 @@ resource "null_resource" "dns_record_check" {
   for_each = toset(concat([var.subdomain], var.alternatives_domains))
 
   provisioner "local-exec" {
-    command     = "until host ${each.key}.${var.domain} > /dev/null; do echo 'Waiting for DNS propagation'; sleep 10; done"
+    command     = "until nslookup ${each.key}.${var.domain} 8.8.8.8 | grep '${azurerm_cdn_endpoint.endpoint.host_name}'; do echo 'Waiting for DNS propagation'; sleep 10; done"
     interpreter = ["bash", "-c"]
     working_dir = path.module
   }
